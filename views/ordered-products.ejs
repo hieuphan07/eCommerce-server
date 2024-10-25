@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/ordered-items.css" />
+		<title>Order</title>
+	</head>
+	<body>
+		<h3 style="font-size: 26px">Xin chào <%= order.contact.fullname %></h3>
+		<p style="font-weight: bold">Phone: <%= order.contact.phoneNumber %></p>
+		<p style="font-weight: bold">Address: <%= order.contact.address %></p>
+		<table style="border: 1px solid #000; border-collapse: collapse">
+			<thead>
+				<tr>
+					<th style="border: 1px solid #000; padding: 10px">Tên sản phẩm</th>
+					<th style="border: 1px solid #000; padding: 10px">Hình ảnh</th>
+					<th style="border: 1px solid #000; padding: 10px">Giá</th>
+					<th style="border: 1px solid #000; padding: 10px">Số lượng</th>
+					<th style="border: 1px solid #000; padding: 10px">Thành tiền</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% order.items.forEach(item => { %>
+				<tr style="border: 1px solid #000; padding: 10px">
+					<td style="border: 1px solid #000; padding: 10px">
+						<%= item.productId.name %>
+					</td>
+					<td style="border: 1px solid #000; padding: 10px; text-align: center">
+						<img
+							style="width: 100px; height: auto"
+							src="<%= item.productId.photos[0] %>"
+							alt="<%= item.productId.photos[0] %>"
+						/>
+					</td>
+					<td style="border: 1px solid #000; padding: 10px; text-align: center">
+						<%= item.productId.price %>
+					</td>
+					<td style="border: 1px solid #000; padding: 10px; text-align: center">
+						<%= item.quantity %>
+					</td>
+					<td style="border: 1px solid #000; padding: 10px; text-align: center">
+						<%= item.amount %>
+					</td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
+		<p style="font-size: 24px; font-weight: bold">
+			Tổng thanh toán: <%= order.total %>
+		</p>
+		<p style="font-size: 24px; font-weight: bold">Cảm ơn bạn!</p>
+	</body>
+</html>
