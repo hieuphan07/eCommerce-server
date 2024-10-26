@@ -4,7 +4,7 @@
 	"description": "products, users, orders, sessions",
 	"main": "app.js",
 	"engines": {
-		"node": "20.14.0"
+		"node": "21.7.3"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
