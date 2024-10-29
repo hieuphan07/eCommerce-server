@@ -38,7 +38,7 @@ app.use(
       'http://localhost:3000',
       'e-commerce-client-smoky-ten.vercel.app',
       'e-commerce-client-git-main-hieus-projects-29fb3e46.vercel.app',
-      'e-commerce-client-3zhibmidd-hieus-projects-29fb3e46.vercel.app',
+      'e-commerce-client-ghaevqbj5-hieus-projects-29fb3e46.vercel.app',
     ],
     credentials: true,
   }),
