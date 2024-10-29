@@ -34,7 +34,7 @@ app.use(compression());
 // use 3rd-party
 app.use(
   cors({
-    origin: "*",
+    origin: ["http://localhost:3000", "http://localhost:3001"],
     credentials: true,
   })
 );
