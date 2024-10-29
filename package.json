@@ -4,7 +4,7 @@
   "description": "products, users, orders, sessions",
   "main": "app.js",
   "engines": {
-    "node": "20.14.0"
+    "node": "22.10.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,7 @@
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "compression": "^1.7.4",
-    "connect-mongodb-session": "^2.2.0",
+    "connect-mongodb-session": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
@@ -29,8 +29,8 @@
     "express-session": "^1.18.0",
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.6.0",
-    "mongoose": "^8.3.3",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.7.3",
     "nodemailer": "^6.9.13",
     "nodemon": "^3.1.0"
   }

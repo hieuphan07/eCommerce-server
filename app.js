@@ -1,32 +1,32 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const path = require('path');
-const helmet = require('helmet');
-const compression = require('compression');
+const express = require("express");
+const dotenv = require("dotenv");
+const path = require("path");
+const helmet = require("helmet");
+const compression = require("compression");
 
 // 3rd-party
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const session = require('express-session');
-const mongoDbStore = require('connect-mongodb-session')(session);
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const session = require("express-session");
+const mongoDbStore = require("connect-mongodb-session")(session);
 
 const app = express();
 dotenv.config();
 
-const MONGODB_URI = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.pfazc8v.mongodb.net/${process.env.MONGODB_DATABASE}`;
+const MONGODB_URI = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.pfazc8v.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`;
 
 const store = new mongoDbStore({
   uri: MONGODB_URI,
-  collection: 'sessions',
+  collection: "sessions",
 });
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+app.set("view engine", "ejs");
+app.set("views", "views");
 
 // import routes
-const shopRoutes = require('./routes/shop');
-const authRoutes = require('./routes/auth');
+const shopRoutes = require("./routes/shop");
+const authRoutes = require("./routes/auth");
 
 app.use(helmet());
 app.use(compression());
@@ -34,33 +34,28 @@ app.use(compression());
 // use 3rd-party
 app.use(
   cors({
-    origin: [
-      'http://localhost:3000',
-      'e-commerce-client-smoky-ten.vercel.app',
-      'e-commerce-client-git-main-hieus-projects-29fb3e46.vercel.app',
-      'e-commerce-client-ghaevqbj5-hieus-projects-29fb3e46.vercel.app',
-    ],
+    origin: "*",
     credentials: true,
-  }),
+  })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
-    secret: 'my secret',
+    secret: "my secret",
     resave: false,
     saveUninitialized: false,
     store: store,
-  }),
+  })
 );
 
 // use routes
 app.use(shopRoutes);
-app.use('/auth', authRoutes);
+app.use("/auth", authRoutes);
 
 app.use((error, req, res, next) => {
-  return res.status(500).json({ error: { message: 'Error occured' } });
+  return res.status(500).json({ error: { message: "Error occured" } });
 });
 
 async function main() {
@@ -71,4 +66,3 @@ async function main() {
 }
 
 main().catch((err) => console.log(err));
-
