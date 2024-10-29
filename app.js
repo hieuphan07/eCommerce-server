@@ -34,7 +34,12 @@ app.use(compression());
 // use 3rd-party
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://ecommerce-hieuphan.vercel.app",
+      "e-commerce-client-smoky-ten.vercel.app",
+    ],
     credentials: true,
   })
 );
